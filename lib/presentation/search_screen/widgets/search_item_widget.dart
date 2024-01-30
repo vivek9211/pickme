@@ -2,6 +2,7 @@ import '../controller/search_controller.dart';
 import '../models/search_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:travelappflutter/core/app_export.dart';
+import '../controller/search_controller.dart' as CustomController;
 
 // ignore: must_be_immutable
 class SearchItemWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class SearchItemWidget extends StatelessWidget {
 
   SearchItemModel searchItemModelObj;
 
-  var controller = Get.find<SearchController>();
+  var controller = Get.find<CustomController.SearchController>();
 
   @override
   Widget build(BuildContext context) {

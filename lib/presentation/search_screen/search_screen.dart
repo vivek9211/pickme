@@ -7,8 +7,10 @@ import 'package:travelappflutter/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:travelappflutter/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:travelappflutter/widgets/app_bar/appbar_title.dart';
 import 'package:travelappflutter/widgets/app_bar/custom_app_bar.dart';
+import 'controller/search_controller.dart' as CustomController;
 
-class SearchScreen extends GetWidget<SearchController> {
+
+class SearchScreen extends GetWidget<CustomController.SearchController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

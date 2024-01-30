@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:travelappflutter/core/app_export.dart';
 
 // ignore: must_be_immutable
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  CustomAppBar(
-      {required this.height,
-      this.leadingWidth,
-      this.leading,
-      this.title,
-      this.centerTitle,
-      this.actions});
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  CustomAppBar({
+    required this.height,
+    this.leadingWidth,
+    this.leading,
+    this.title,
+    this.centerTitle,
+    this.actions,
+  });
 
   double height;
-
   double? leadingWidth;
-
   Widget? leading;
-
   Widget? title;
-
   bool? centerTitle;
-
   List<Widget>? actions;
 
   @override
@@ -41,7 +36,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size(
-        size.width,
-        height,
-      );
+    double.infinity, // Set to a large value to allow the app bar to occupy the entire width
+    height,
+  );
 }

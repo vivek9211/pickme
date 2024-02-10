@@ -332,7 +332,7 @@ class AppStyle {
       18,
     ),
     fontFamily: 'Gill Sans MT',
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.bold,
   );
 
   static TextStyle txtGillSansMT16 = TextStyle(

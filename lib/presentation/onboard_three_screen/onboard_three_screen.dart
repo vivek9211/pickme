@@ -57,6 +57,10 @@ class OnboardThreeScreen extends GetWidget<OnboardThreeController> {
                               right: 20,
                               bottom: 12,
                             ),
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.signInScreen);
+                              },
                             child: Text(
                               "lbl_skip".tr,
                               overflow: TextOverflow.ellipsis,
@@ -64,6 +68,7 @@ class OnboardThreeScreen extends GetWidget<OnboardThreeController> {
                               style: AppStyle.txtGillSansMT18.copyWith(
                                 height: 1.00,
                               ),
+                            ),
                             ),
                           ),
                         ),
@@ -146,22 +151,6 @@ class OnboardThreeScreen extends GetWidget<OnboardThreeController> {
                     textAlign: TextAlign.center,
                     style: AppStyle.txtGillSansMT16.copyWith(
                       height: 1.50,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: getPadding(
-                    left: 20,
-                    top: 23,
-                    right: 20,
-                  ),
-                  child: CommonImageView(
-                    svgPath: ImageConstant.imgTicket,
-                    height: getVerticalSize(
-                      7.00,
-                    ),
-                    width: getHorizontalSize(
-                      62.00,
                     ),
                   ),
                 ),

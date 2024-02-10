@@ -19,7 +19,7 @@ class SplashScreen extends GetWidget<SplashController> {
                       Padding(
                           padding: getPadding(
                               left: 121, top: 337, right: 121, bottom: 5),
-                          child: Text("lbl_travenor".tr,
+                          child: Text("PickMe".tr,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtGeometric415BTBlackA34

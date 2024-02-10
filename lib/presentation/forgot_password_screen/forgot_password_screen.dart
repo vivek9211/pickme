@@ -63,7 +63,7 @@ class ForgotPasswordScreen extends GetWidget<ForgotPasswordController> {
                                   width: 335,
                                   focusNode: FocusNode(),
                                   controller: controller.emailController,
-                                  hintText: "msg_www_uihut_gmail".tr,
+                                  hintText: "msg_www_example_gmail".tr,
                                   margin:
                                       getMargin(left: 20, top: 40, right: 20),
                                   textInputAction: TextInputAction.done,

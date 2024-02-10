@@ -63,7 +63,7 @@ class SignUpScreen extends GetWidget<SignUpController> {
                                   focusNode: FocusNode(),
                                   controller:
                                       controller.groupFiftyOneController,
-                                  hintText: "lbl_leonardo_smith".tr,
+                                  hintText: "lbl_user_name".tr,
                                   margin:
                                       getMargin(left: 20, top: 40, right: 20),
                                   alignment: Alignment.center),
@@ -71,7 +71,7 @@ class SignUpScreen extends GetWidget<SignUpController> {
                                   width: 335,
                                   focusNode: FocusNode(),
                                   controller: controller.emailController,
-                                  hintText: "msg_www_uihut_gmail".tr,
+                                  hintText: "msg_www_example_gmail".tr,
                                   margin:
                                       getMargin(left: 20, top: 24, right: 20),
                                   textInputAction: TextInputAction.done,

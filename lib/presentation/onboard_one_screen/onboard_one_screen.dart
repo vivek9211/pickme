@@ -57,12 +57,17 @@ class OnboardOneScreen extends GetWidget<OnboardOneController> {
                               right: 20,
                               bottom: 12,
                             ),
-                            child: Text(
-                              "lbl_skip".tr,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtGillSansMT18.copyWith(
-                                height: 1.00,
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.signInScreen);
+                              },
+                              child: Text(
+                                "lbl_skip".tr,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: AppStyle.txtGillSansMT18.copyWith(
+                                  height: 1.00,
+                                ),
                               ),
                             ),
                           ),
@@ -146,22 +151,6 @@ class OnboardOneScreen extends GetWidget<OnboardOneController> {
                     textAlign: TextAlign.center,
                     style: AppStyle.txtGillSansMT16.copyWith(
                       height: 1.50,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: getPadding(
-                    left: 20,
-                    top: 29,
-                    right: 20,
-                  ),
-                  child: CommonImageView(
-                    svgPath: ImageConstant.imgTicket,
-                    height: getVerticalSize(
-                      7.00,
-                    ),
-                    width: getHorizontalSize(
-                      62.00,
                     ),
                   ),
                 ),

@@ -8,7 +8,7 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    Future.delayed(const Duration(milliseconds: 10000), () {
+    Future.delayed(const Duration(milliseconds: 3000), () { // starting screen 'pickme' timing
       Get.toNamed(AppRoutes.onboardOneScreen);
     });
   }

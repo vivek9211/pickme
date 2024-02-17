@@ -10,13 +10,19 @@ dependencies:
   connectivity_plus: ^2.3.6
   shared_preferences: ^2.0.15
   cached_network_image: ^3.2.1
-  flutter_svg: ^0.22.0
+  flutter_svg: ^2.0.9
   pin_code_fields: ^7.3.0
   sms_autofill: ^2.0.0
   intl: ^0.17.0
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
+  flutter_launcher_icons: "^0.13.1"
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/pickme.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 flutter: 
   uses-material-design: true
   assets: 

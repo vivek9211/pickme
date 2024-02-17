@@ -116,6 +116,7 @@ final Map<String, String> enUs = {
   "lbl_settings": "Settings",
   "lbl_explore": "explore",
   "lbl_14_nov_22nov": "14 Nov-22Nov",
+  "lbl_password": "Enter Your Password",
   "msg_password_must_b": "Password must be 8 character",
   "lbl_pop_up": "Pop Up",
   "msg_24_person_joine": "24 Person Joined",

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class SignUpController extends GetxController {
   TextEditingController groupFiftyOneController = TextEditingController();
-
   TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController(); // Add this line
 
   Rx<SignUpModel> signUpModelObj = SignUpModel().obs;
 
@@ -19,5 +19,6 @@ class SignUpController extends GetxController {
     super.onClose();
     groupFiftyOneController.dispose();
     emailController.dispose();
+    passwordController.dispose(); // Don't forget to dispose it when not needed
   }
 }

@@ -1,14 +1,5 @@
 
-# 🔥Travenor - A FLutter Travel Application - Flutter UI🔥
-
-
-[![Twitter Badge](https://img.shields.io/badge/-@manishdayma22-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/manishdayma22)](https://twitter.com/manishdayma22)
-[![GitHub DaymaManish](https://img.shields.io/github/followers/DaymaManish?label=follow&style=social)](https://github.com/DaymaManish)
-[![Gmail Badge](https://img.shields.io/badge/-manishdayma65@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:manishdayma65@gmail.com)](mailto:manishdayma65@gmail.com)
-
-[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/ishidayma)
-[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/daymamanish/)
-<a href="https://www.buymeacoffee.com/manishdayma" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="30"></a>
+# 🔥PickMe - A FLutter Travel Application - Flutter UI🔥
 
 Star⭐ the repo if you like to see more stuff on flutter 😉.
 
@@ -130,8 +121,3 @@ Resolve the errors and warnings that are shown in the application.
   https://pub.dev/packages/shared_preferences
 - cached_network_image - For storing internet image into cache
   https://pub.dev/packages/cached_network_image
-    
-### Support
-
-<a href="https://www.buymeacoffee.com/manishdayma" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="50"></a>
-

@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/core/app_export.dart';
 import 'package:travelappflutter/presentation/sign_in_screen/models/sign_in_model.dart';
-import 'package:flutter/material.dart';
 
 class SignInController extends GetxController {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController(); // Add this line
+  TextEditingController passwordController = TextEditingController();
 
   Rx<SignInModel> signInModelObj = SignInModel().obs;
 
@@ -17,6 +20,19 @@ class SignInController extends GetxController {
   void onClose() {
     super.onClose();
     emailController.dispose();
-    passwordController.dispose(); // Don't forget to dispose it when not needed
+    passwordController.dispose();
+  }
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      print('User signed in: ${userCredential.user}');
+      Get.toNamed(AppRoutes.appNavigationScreen);
+    } catch (e) {
+      print('Sign-in error: $e');
+    }
   }
 }

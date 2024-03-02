@@ -104,6 +104,9 @@ class SignUpScreen extends GetWidget<SignUpController> {
                                   }
                               ),
                               CustomButton(
+                                  onTap: () {
+                                    controller.signUpWithEmailAndPassword();
+                                  },
                                   width: 335,
                                   text: "lbl_sign_up2".tr,
                                   margin:

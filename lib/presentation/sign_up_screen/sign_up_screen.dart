@@ -124,23 +124,28 @@ class SignUpScreen extends GetWidget<SignUpController> {
                                               CrossAxisAlignment.center,
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Text("msg_already_have_an".tr,
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle
-                                                    .txtSFUIDisplayRegular14
-                                                    .copyWith(height: 1.00)),
+                                            Text(
+                                              "msg_already_have_an".tr,
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.left,
+                                              style: AppStyle.txtSFUIDisplayRegular14.copyWith(height: 1.00),
+                                            ),
                                             Padding(
-                                                padding: getPadding(left: 8),
-                                                child: Text("lbl_sign_in2".tr,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtSFUIDisplayMedium14
-                                                        .copyWith(
-                                                            height: 1.00)))
-                                          ]))),
+                                              padding: getPadding(left: 8),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Get.find<SignUpController>().redirectToSignIn();
+                                                },
+                                                child: Text(
+                                                  "lbl_sign_in2".tr,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.left,
+                                                  style: AppStyle.txtSFUIDisplayMedium14.copyWith(height: 1.00),
+                                                ),
+                                              ),
+                                            ),
+                                          ]
+                                      ))),
                               Align(
                                   alignment: Alignment.center,
                                   child: Padding(

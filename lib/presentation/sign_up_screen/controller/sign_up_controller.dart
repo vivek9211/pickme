@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,12 +17,15 @@ class SignUpController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  late Timer _timer;
+
   @override
   void onClose() {
     super.onClose();
     groupFiftyOneController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    _timer.cancel(); // Cancel timer when controller is closed
   }
 
   Future<void> signUpWithEmailAndPassword() async {
@@ -38,12 +42,36 @@ class SignUpController extends GetxController {
         // Add more fields if needed
       });
 
-      print('User signed up: ${userCredential.user}');
-      // You can navigate to the next screen or perform any other action here
-      // Example: Get.toNamed(AppRoutes.homeScreen);
-      Get.toNamed(AppRoutes.appNavigationScreen);
+      sendEmailVerification();
+
+      Get.toNamed(AppRoutes.verificationScreen);
     } catch (e) {
       print('Sign-up error: $e');
     }
   }
+
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+      setTimerForAutoRedirect();
+    } catch (error) {
+      print('Error sending verification email: $error');
+    }
+  }
+
+  void setTimerForAutoRedirect() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
+      await FirebaseAuth.instance.currentUser?.reload();
+      final user = FirebaseAuth.instance.currentUser;
+      if (user!.emailVerified) {
+        timer.cancel();
+        Get.offAllNamed(AppRoutes.appNavigationScreen);
+      }
+    });
+  }
+
+  void redirectToSignIn() {
+    Get.toNamed(AppRoutes.signInScreen);
+  }
+
 }

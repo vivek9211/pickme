@@ -30,6 +30,12 @@ class SignUpController extends GetxController {
 
   Future<void> signUpWithEmailAndPassword() async {
     try {
+      bool isEmailExists = await isEmailAlreadyRegistered(emailController.text.trim());
+      if (isEmailExists) {
+        Get.snackbar('Warning', 'Email already registered');
+        return;
+      }
+
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
@@ -39,7 +45,6 @@ class SignUpController extends GetxController {
       await _firestore.collection('users').doc(userCredential.user!.uid).set({
         'username': groupFiftyOneController.text.trim(),
         'email': emailController.text.trim(),
-        // Add more fields if needed
       });
 
       sendEmailVerification();
@@ -47,6 +52,22 @@ class SignUpController extends GetxController {
       Get.toNamed(AppRoutes.verificationScreen);
     } catch (e) {
       print('Sign-up error: $e');
+    }
+  }
+
+  Future<bool> isEmailAlreadyRegistered(String email) async {
+    try {
+      // Query Firestore to check if the email exists
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .limit(1)
+          .get();
+
+      return querySnapshot.docs.isNotEmpty;
+    } catch (e) {
+      print('Error checking email registration: $e');
+      return false;
     }
   }
 

@@ -94,5 +94,4 @@ class SignUpController extends GetxController {
   void redirectToSignIn() {
     Get.toNamed(AppRoutes.signInScreen);
   }
-
 }

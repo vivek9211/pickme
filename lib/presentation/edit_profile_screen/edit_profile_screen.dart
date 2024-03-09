@@ -6,6 +6,7 @@ import 'package:travelappflutter/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:travelappflutter/widgets/app_bar/appbar_title.dart';
 import 'package:travelappflutter/widgets/app_bar/custom_app_bar.dart';
 import 'package:travelappflutter/widgets/custom_text_form_field.dart';
+import 'package:travelappflutter/users/user_info.dart';
 
 class EditProfileScreen extends GetWidget<EditProfileController> {
   @override
@@ -43,15 +44,31 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                                   svgPath: ImageConstant.imgFile1,
                                   height: getSize(96.00),
                                   width: getSize(96.00)))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                              padding: getPadding(left: 20, top: 13, right: 20),
-                              child: Text("lbl_leonardo".tr,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.left,
-                                  style: AppStyle.txtSFUIDisplayMedium24
-                                      .copyWith(height: 1.00)))),
+                          FutureBuilder<String>(
+                            future: UserUtils.getUserUserInfo(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else {
+                                if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                                  return Align(
+                                    alignment: Alignment.center,
+                                    child: Padding(
+                                      padding: getPadding(left: 20, top: 13, right: 20),
+                                      child: Text(
+                                        snapshot.data!,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.left,
+                                        style: AppStyle.txtSFUIDisplayMedium24.copyWith(height: 1.00),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return SizedBox(); // Return an empty widget if no username available
+                                }
+                              }
+                            },
+                          ),
                       Align(
                           alignment: Alignment.center,
                           child: Padding(
@@ -65,7 +82,7 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                               padding: getPadding(left: 20, top: 30, right: 20),
-                              child: Text("lbl_first_name".tr,
+                              child: Text("lbl_full_name".tr,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: AppStyle.txtSFUIDisplayMedium18
@@ -90,7 +107,7 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                               padding: getPadding(left: 20, top: 16, right: 20),
-                              child: Text("lbl_last_name".tr,
+                              child: Text("lbl_aadhar_no".tr,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: AppStyle.txtSFUIDisplayMedium18
@@ -100,7 +117,7 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                           width: 335,
                           focusNode: FocusNode(),
                           controller: controller.languageOneController,
-                          hintText: "lbl_ahmed".tr,
+                          hintText: "lbl_aadhar_no_placeholder".tr,
                           margin: getMargin(left: 20, top: 15, right: 20),
                           alignment: Alignment.center,
                           suffix: Container(
@@ -125,7 +142,7 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                           width: 335,
                           focusNode: FocusNode(),
                           controller: controller.group249Controller,
-                          hintText: "msg_sylhet_banglade".tr,
+                          hintText: "msg_location_placeholder".tr,
                           margin: getMargin(left: 20, top: 15, right: 20),
                           padding: TextFormFieldPadding.PaddingAll14,
                           textInputAction: TextInputAction.done,
@@ -170,7 +187,7 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                                                 CrossAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Text("lbl_88".tr,
+                                              Text("lbl_91".tr,
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
@@ -202,7 +219,7 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                                               Padding(
                                                   padding: getPadding(left: 12),
                                                   child: Text(
-                                                      "lbl_01758_000666".tr,
+                                                      "lbl_phone_no_placeholder".tr,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,

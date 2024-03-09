@@ -30,7 +30,7 @@ class SignInController extends GetxController {
         password: passwordController.text.trim(),
       );
       print('User signed in: ${userCredential.user}');
-      Get.toNamed(AppRoutes.appNavigationScreen);
+      Get.toNamed(AppRoutes.homeScreen);
     } catch (e) {
       print('Sign-in error: $e');
     }

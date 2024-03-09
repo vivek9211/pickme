@@ -80,7 +80,7 @@ final Map<String, String> enUs = {
   "lbl_4_7": "4.7",
   "lbl_4_9": "4.9",
   "lbl_4_8": "4.8",
-  "lbl_phone_no_placeholder": "01758-000666",
+  "lbl_mobile_number_placeholder": "01758-000666",
   "lbl_59_person": "\$59/Person",
   "lbl_4_3": "4.3",
   "lbl_857": "\$857/",

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserUtils {
   static String getUserInformation() {
@@ -42,3 +43,29 @@ class UserUtils {
     return ''; // Return an empty string as default value
   }
 }
+
+class FirebaseService {
+  Future<void> updateUserProfile(String username, String aadharNumber, String location, String phoneNumber) async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        throw Exception('No user signed in');
+      }
+
+      String userId = user.uid;
+
+      await FirebaseFirestore.instance.collection('users').doc(userId).set({
+        'username': username,
+        'aadharNumber': aadharNumber,
+        'location': location,
+        'phoneNumber': phoneNumber,
+      });
+
+      print('User profile updated successfully');
+    } catch (error) {
+      print('Failed to update user profile: $error');
+      throw error;
+    }
+  }
+}
+

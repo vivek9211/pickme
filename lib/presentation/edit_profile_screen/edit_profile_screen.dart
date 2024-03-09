@@ -1,3 +1,5 @@
+import 'package:travelappflutter/widgets/custom_button.dart';
+
 import 'controller/edit_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:travelappflutter/core/app_export.dart';
@@ -23,12 +25,18 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                     onTap: onTapArrowleft10),
                 centerTitle: true,
                 title: AppbarTitle(text: "lbl_edit_profile".tr),
-                actions: [
-                  AppbarSubtitle1(
-                      text: "lbl_done".tr,
-                      margin:
-                          getMargin(left: 20, top: 18, right: 20, bottom: 18))
-                ]),
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    controller.updateUserProfile();
+                  },
+                  child: AppbarSubtitle1(
+                    text: "lbl_done".tr,
+                    margin: getMargin(left: 20, top: 18, right: 20, bottom: 18),
+                  ),
+                ),
+              ],
+            ),
             body: Container(
                 width: size.width,
                 child: SingleChildScrollView(
@@ -155,91 +163,54 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                           suffixConstraints: BoxConstraints(
                               minWidth: getHorizontalSize(10.00),
                               minHeight: getVerticalSize(7.00))),
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
                               padding: getPadding(left: 20, top: 16, right: 20),
-                              child: Text("lbl_mobile_number".tr,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.left,
-                                  style: AppStyle.txtSFUIDisplayMedium18
-                                      .copyWith(
-                                          letterSpacing: 0.50, height: 1.00)))),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Container(
+                              child: Text(
+                                "lbl_mobile_number".tr,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: AppStyle.txtSFUIDisplayMedium18.copyWith(
+                                  letterSpacing: 0.50,
+                                  height: 1.00,
+                                )))),
+                          CustomTextFormField(
+                            width: 335,
+                            focusNode: FocusNode(),
+                            controller: controller.phoneNumberController,
+                            hintText: "lbl_mobile_number_placeholder".tr,
+                            margin: getMargin(left: 20, top: 15, right: 20),
+                            padding: TextFormFieldPadding.PaddingAll14,
+                            textInputAction: TextInputAction.done,
+                            alignment: Alignment.center,
+                            suffix: Container(
                               margin: getMargin(
-                                  left: 20, top: 15, right: 20, bottom: 106),
-                              decoration: AppDecoration.fillGray100.copyWith(
-                                  borderRadius:
-                                      BorderRadiusStyle.circleBorder17),
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                        padding: getPadding(
-                                            left: 16, top: 16, bottom: 16),
-                                        child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text("lbl_91".tr,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  textAlign: TextAlign.left,
-                                                  style: AppStyle
-                                                      .txtSFUIDisplayRegular16
-                                                      .copyWith(
-                                                          letterSpacing: 0.30,
-                                                          height: 1.00)),
-                                              Padding(
-                                                  padding: getPadding(
-                                                      left: 6,
-                                                      top: 6,
-                                                      bottom: 5),
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              getHorizontalSize(
-                                                                  0.50)),
-                                                      child: CommonImageView(
-                                                          svgPath: ImageConstant
-                                                              .imgArrowup,
-                                                          height:
-                                                              getVerticalSize(
-                                                                  5.00),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  10.00),
-                                                          fit: BoxFit.cover))),
-                                              Padding(
-                                                  padding: getPadding(left: 12),
-                                                  child: Text(
-                                                      "lbl_phone_no_placeholder".tr,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtSFUIDisplayRegular16Gray900
-                                                          .copyWith(
-                                                              letterSpacing:
-                                                                  0.30,
-                                                              height: 1.00)))
-                                            ])),
-                                    Padding(
-                                        padding: getPadding(
-                                            top: 21, right: 24, bottom: 20),
-                                        child: CommonImageView(
-                                            svgPath:
-                                                ImageConstant.imgCheckmark7x10,
-                                            height: getVerticalSize(7.00),
-                                            width: getHorizontalSize(10.00)))
-                                  ])))
-                    ])))));
+                                left: 30,
+                                top: 21,
+                                right: 24,
+                                bottom: 20,
+                              ),
+                              child: CommonImageView(
+                                svgPath: ImageConstant.imgCheckmark7x10,
+                              ),
+                            ),
+                            suffixConstraints: BoxConstraints(
+                              minWidth: getHorizontalSize(10.00),
+                              minHeight: getVerticalSize(7.00),
+                            )),
+
+                          CustomButton(
+                              onTap: () {
+                                controller.updateUserProfile();
+                              },
+                              width: 335,
+                              text: "lbl_done".tr,
+                              margin:
+                              getMargin(left: 20, top: 40, right: 20),
+                              alignment: Alignment.center),
+
+                        ])))));
   }
 
   onTapArrowleft10() {

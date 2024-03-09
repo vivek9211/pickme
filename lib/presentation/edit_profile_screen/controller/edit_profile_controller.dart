@@ -37,6 +37,12 @@ class EditProfileController extends GetxController {
       FirebaseService firebaseService = FirebaseService();
       // Call the updateUserProfile method on the instance
       await firebaseService.updateUserProfile(username, aadharNumber, location, phoneNumber);
+      Get.snackbar(
+        'Success',
+        'Profile Updated',
+        duration: Duration(seconds: 2), // Adjust the duration as needed
+        snackPosition: SnackPosition.BOTTOM,
+      );
       Get.toNamed(AppRoutes.homeScreen);
     } catch (error) {
       print('Failed to update user profile: $error');

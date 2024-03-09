@@ -207,7 +207,7 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                               width: 335,
                               text: "lbl_done".tr,
                               margin:
-                              getMargin(left: 20, top: 40, right: 20),
+                              getMargin(left: 20, top: 20, right: 20),
                               alignment: Alignment.center),
 
                         ])))));

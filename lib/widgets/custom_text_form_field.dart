@@ -1,83 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:travelappflutter/core/app_export.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField(
-      {this.shape,
-      this.padding,
-      this.variant,
-      this.fontStyle,
-      this.alignment,
-      this.width,
-      this.margin,
-      this.controller,
-      this.focusNode,
-      this.isObscureText = false,
-      this.textInputAction = TextInputAction.next,
-      this.maxLines,
-      this.hintText,
-      this.prefix,
-      this.prefixConstraints,
-      this.suffix,
-      this.suffixConstraints,
-      this.validator});
+  CustomTextFormField({
+    this.shape,
+    this.padding,
+    this.variant,
+    this.fontStyle,
+    this.alignment,
+    this.width,
+    this.margin,
+    this.controller,
+    this.focusNode,
+    this.isObscureText = false,
+    this.textInputAction = TextInputAction.next,
+    this.maxLines,
+    this.hintText,
+    this.prefix,
+    this.prefixConstraints,
+    this.suffix,
+    this.suffixConstraints,
+    this.validator,
+  });
 
-  TextFormFieldShape? shape;
-
-  TextFormFieldPadding? padding;
-
-  TextFormFieldVariant? variant;
-
-  TextFormFieldFontStyle? fontStyle;
-
-  Alignment? alignment;
-
-  double? width;
-
-  EdgeInsetsGeometry? margin;
-
-  TextEditingController? controller;
-
-  FocusNode? focusNode;
-
-  bool? isObscureText;
-
-  TextInputAction? textInputAction;
-
-  int? maxLines;
-
-  String? hintText;
-
-  Widget? prefix;
-
-  BoxConstraints? prefixConstraints;
-
-  Widget? suffix;
-
-  BoxConstraints? suffixConstraints;
-
-  FormFieldValidator<String>? validator;
+  final TextFormFieldShape? shape;
+  final TextFormFieldPadding? padding;
+  final TextFormFieldVariant? variant;
+  final TextFormFieldFontStyle? fontStyle;
+  final Alignment? alignment;
+  final double? width;
+  final EdgeInsetsGeometry? margin;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final bool? isObscureText;
+  final TextInputAction? textInputAction;
+  final int? maxLines;
+  final String? hintText;
+  final Widget? prefix;
+  final BoxConstraints? prefixConstraints;
+  final Widget? suffix;
+  final BoxConstraints? suffixConstraints;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
     return alignment != null
         ? Align(
-            alignment: alignment ?? Alignment.center,
-            child: _buildTextFormFieldWidget(),
-          )
+      alignment: alignment!,
+      child: _buildTextFormFieldWidget(),
+    )
         : _buildTextFormFieldWidget();
   }
 
-  _buildTextFormFieldWidget() {
+  Widget _buildTextFormFieldWidget() {
     return Container(
-      width: getHorizontalSize(width ?? 0),
+      width: width,
       margin: margin,
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,
         style: _setFontStyle(),
         obscureText: isObscureText!,
-        textInputAction: textInputAction,
+        textInputAction: textInputAction!,
         maxLines: maxLines ?? 1,
         decoration: _buildDecoration(),
         validator: validator,
@@ -85,10 +68,10 @@ class CustomTextFormField extends StatelessWidget {
     );
   }
 
-  _buildDecoration() {
+  InputDecoration _buildDecoration() {
     return InputDecoration(
       hintText: hintText ?? "",
-      hintStyle: _setFontStyle(),
+      hintStyle: _setHintStyle(),
       border: _setBorderStyle(),
       enabledBorder: _setBorderStyle(),
       focusedBorder: _setBorderStyle(),
@@ -97,39 +80,32 @@ class CustomTextFormField extends StatelessWidget {
       prefixIconConstraints: prefixConstraints,
       suffixIcon: suffix,
       suffixIconConstraints: suffixConstraints,
-      fillColor: _setFillColor(),
       filled: _setFilled(),
+      fillColor: _setFillColor(),
       isDense: true,
       contentPadding: _setPadding(),
     );
   }
 
-  _setFontStyle() {
+  TextStyle _setHintStyle() {
+    return TextStyle(
+      color: Colors.grey, // Light gray color for the hintText
+    );
+  }
+
+  TextStyle _setFontStyle() {
     switch (fontStyle) {
       default:
         return TextStyle(
-          color: ColorConstant.gray900,
-          fontSize: getFontSize(
-            16,
-          ),
-          fontFamily: 'SF UI Display',
-          fontWeight: FontWeight.w400,
+          color: Colors.black, // Default text color
+          fontSize: 16, // Default font size
+          fontFamily: 'SF UI Display', // Default font family
+          fontWeight: FontWeight.w400, // Default font weight
         );
     }
   }
 
-  _setOutlineBorderRadius() {
-    switch (shape) {
-      default:
-        return BorderRadius.circular(
-          getHorizontalSize(
-            14.00,
-          ),
-        );
-    }
-  }
-
-  _setBorderStyle() {
+  OutlineInputBorder _setBorderStyle() {
     switch (variant) {
       default:
         return OutlineInputBorder(
@@ -139,30 +115,33 @@ class CustomTextFormField extends StatelessWidget {
     }
   }
 
-  _setFillColor() {
-    switch (variant) {
+  BorderRadius _setOutlineBorderRadius() {
+    switch (shape) {
       default:
-        return ColorConstant.gray100;
+        return BorderRadius.circular(14);
     }
   }
 
-  _setFilled() {
+  Color _setFillColor() {
     switch (variant) {
       default:
-        return true;
+        return Colors.grey[100]!; // Fill color for the TextFormField
     }
   }
 
-  _setPadding() {
+  bool _setFilled() {
+    switch (variant) {
+      default:
+        return true; // Fill the TextFormField with color
+    }
+  }
+
+  EdgeInsetsGeometry _setPadding() {
     switch (padding) {
       case TextFormFieldPadding.PaddingAll14:
-        return getPadding(
-          all: 14,
-        );
+        return EdgeInsets.all(14);
       default:
-        return getPadding(
-          all: 18,
-        );
+        return EdgeInsets.all(18);
     }
   }
 }

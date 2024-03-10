@@ -5,6 +5,7 @@ import 'package:travelappflutter/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:travelappflutter/widgets/app_bar/appbar_title.dart';
 import 'package:travelappflutter/widgets/app_bar/custom_app_bar.dart';
 import 'package:travelappflutter/widgets/custom_radio_button.dart';
+import 'package:travelappflutter/users/user_info.dart';
 
 class ProfileScreen extends GetWidget<ProfileController> {
   @override
@@ -24,7 +25,11 @@ class ProfileScreen extends GetWidget<ProfileController> {
                 actions: [
                   AppbarIconbutton(
                       svgPath: ImageConstant.imgEdit,
-                      margin: getMargin(left: 20, top: 6, right: 20, bottom: 6))
+                      margin: getMargin(left: 20, top: 6, right: 20, bottom: 6),
+                      onTap: () {
+                        Get.toNamed(AppRoutes.editProfileScreen);
+                      }
+                  )
                 ]),
             body: Container(
                 width: size.width,
@@ -40,21 +45,36 @@ class ProfileScreen extends GetWidget<ProfileController> {
                               svgPath: ImageConstant.imgFile96x96,
                               height: getSize(96.00),
                               width: getSize(96.00))),
-                      Padding(
-                          padding: getPadding(left: 20, top: 13, right: 20),
-                          child: Text("lbl_leonardo".tr,
+                          FutureBuilder<String>(
+                            future: UserUtils.getUserUserInfo(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else {
+                                if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                                  return Padding(
+                                    padding: getPadding(left: 20, top: 13, right: 20),
+                                    child: Text(
+                                      snapshot.data!,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.txtSFUIDisplayMedium24.copyWith(height: 1.00),
+                                    ),
+                                  );
+                                } else {
+                                  // If no data is available, return an empty SizedBox
+                                  return SizedBox();
+                                }}}),
+                          Padding(
+                            padding: getPadding(left: 20, top: 8, right: 20),
+                            child: Text(
+                              UserUtils.getUserInformation(),
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
-                              style: AppStyle.txtSFUIDisplayMedium24
-                                  .copyWith(height: 1.00))),
-                      Padding(
-                          padding: getPadding(left: 20, top: 8, right: 20),
-                          child: Text("msg_leonardo_gmail".tr,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtSFUIDisplayRegular14Bluegray400
-                                  .copyWith(height: 1.00))),
-                      Container(
+                              style: AppStyle.txtSFUIDisplayRegular14Bluegray400.copyWith(height: 1.00),
+                            ),
+                          ),
+                          Container(
                           margin: getMargin(left: 20, top: 30, right: 20),
                           decoration: AppDecoration.outlineBluegray2001e1
                               .copyWith(

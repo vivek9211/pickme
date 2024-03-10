@@ -3,6 +3,7 @@ import 'package:travelappflutter/core/app_export.dart';
 import 'package:travelappflutter/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:travelappflutter/widgets/app_bar/custom_app_bar.dart';
 import 'package:travelappflutter/widgets/custom_icon_button.dart';
+import 'package:travelappflutter/users/user_info.dart';
 
 import '../home_screen/widgets/home_item_widget.dart';
 import 'controller/home_controller.dart';
@@ -18,56 +19,69 @@ class HomeScreen extends GetWidget<HomeController> {
           height: getVerticalSize(
             56.00,
           ),
-          title: Container(
-            margin: getMargin(
-              left: 20,
-            ),
-            decoration: AppDecoration.fillGray100.copyWith(
-              borderRadius: BorderRadiusStyle.roundedBorder24,
-            ),
-            child: InkWell(
-              onTap: () {
-                Get.toNamed(AppRoutes.editProfileScreen);
-              },
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: getPadding(
-                      left: 4,
-                      top: 4,
-                      bottom: 3,
+          title: FutureBuilder<String>(
+            future: UserUtils.getUserUserInfo(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else {
+                if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                  return Container(
+                    margin: getMargin(
+                      left: 20,
                     ),
-                    child: CommonImageView(
-                      svgPath: ImageConstant.imgFile,
-                      height: getSize(
-                        37.00,
+                    decoration: AppDecoration.fillGray100.copyWith(
+                      borderRadius: BorderRadiusStyle.roundedBorder24,
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.editProfileScreen);
+                      },
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: getPadding(
+                              left: 4,
+                              top: 4,
+                              bottom: 3,
+                            ),
+                            child: CommonImageView(
+                              svgPath: ImageConstant.imgFile,
+                              height: getSize(
+                                37.00,
+                              ),
+                              width: getSize(
+                                37.00,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: getPadding(
+                              left: 6,
+                              top: 14,
+                              right: 12,
+                              bottom: 14,
+                            ),
+                            child: Text(
+                              snapshot.data!,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.left,
+                              style: AppStyle.txtSFUIDisplayMedium14Gray900.copyWith(
+                                height: 1.00,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      width: getSize(
-                        37.00,
-                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: getPadding(
-                      left: 6,
-                      top: 14,
-                      right: 12,
-                      bottom: 14,
-                    ),
-                    child: Text(
-                      "lbl_leonardo".tr,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: AppStyle.txtSFUIDisplayMedium14Gray900.copyWith(
-                        height: 1.00,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                  );
+                } else {
+                  return SizedBox();
+                }
+              }
+            },
           ),
           actions: [
             AppbarIconbutton(
@@ -498,7 +512,7 @@ class HomeScreen extends GetWidget<HomeController> {
                                     padding: getPadding(
                                       left: 31,
                                       top: 8,
-                                      right: 21,
+                                      right: 19,
                                       bottom: 10,
                                     ),
                                     child: Column(

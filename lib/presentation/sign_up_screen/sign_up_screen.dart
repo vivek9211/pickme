@@ -103,83 +103,10 @@ class SignUpScreen extends GetWidget<SignUpController> {
                                     return null;
                                   }
                               ),
-                              // Align(
-                              //     alignment: Alignment.center,
-                              //     child: Container(
-                              //         height: getVerticalSize(56.00),
-                              //         width: getHorizontalSize(335.00),
-                              //         margin: getMargin(
-                              //             left: 20, top: 24, right: 20),
-                              //         child: Stack(
-                              //             alignment: Alignment.center,
-                              //             children: [
-                              //               Align(
-                              //                   alignment: Alignment.centerLeft,
-                              //                   child: Container(
-                              //                       height:
-                              //                           getVerticalSize(56.00),
-                              //                       width: getHorizontalSize(
-                              //                           335.00),
-                              //                       decoration: BoxDecoration(
-                              //                           color: ColorConstant
-                              //                               .gray100,
-                              //                           borderRadius:
-                              //                               BorderRadius.circular(
-                              //                                   getHorizontalSize(
-                              //                                       14.00))))),
-                              //               Align(
-                              //                   alignment: Alignment.center,
-                              //                   child: Padding(
-                              //                       padding:
-                              //                           getPadding(all: 16),
-                              //                       child: Row(
-                              //                           crossAxisAlignment:
-                              //                               CrossAxisAlignment
-                              //                                   .center,
-                              //                           mainAxisSize:
-                              //                               MainAxisSize.max,
-                              //                           children: [
-                              //                             Padding(
-                              //                                 padding:
-                              //                                     getPadding(
-                              //                                         top: 8,
-                              //                                         bottom:
-                              //                                             8),
-                              //                                 child: CommonImageView(
-                              //                                     svgPath:
-                              //                                         ImageConstant
-                              //                                             .img,
-                              //                                     height:
-                              //                                         getVerticalSize(
-                              //                                             8.00),
-                              //                                     width: getHorizontalSize(
-                              //                                         97.00))),
-                              //                             Padding(
-                              //                                 padding:
-                              //                                     getPadding(
-                              //                                         left:
-                              //                                             182),
-                              //                                 child: CommonImageView(
-                              //                                     svgPath:
-                              //                                         ImageConstant
-                              //                                             .imgEyeicon,
-                              //                                     height:
-                              //                                         getSize(
-                              //                                             24.00),
-                              //                                     width: getSize(
-                              //                                         24.00)))
-                              //                           ])))
-                              //             ]))),
-                              // Padding(
-                              //     padding:
-                              //         getPadding(left: 20, top: 16, right: 20),
-                              //     child: Text("msg_password_must_b".tr,
-                              //         overflow: TextOverflow.ellipsis,
-                              //         textAlign: TextAlign.left,
-                              //         style: AppStyle
-                              //             .txtSFUIDisplayRegular14Bluegray400
-                              //             .copyWith(height: 1.00))),
                               CustomButton(
+                                  onTap: () {
+                                    controller.signUpWithEmailAndPassword();
+                                  },
                                   width: 335,
                                   text: "lbl_sign_up2".tr,
                                   margin:
@@ -197,23 +124,28 @@ class SignUpScreen extends GetWidget<SignUpController> {
                                               CrossAxisAlignment.center,
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Text("msg_already_have_an".tr,
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle
-                                                    .txtSFUIDisplayRegular14
-                                                    .copyWith(height: 1.00)),
+                                            Text(
+                                              "msg_already_have_an".tr,
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.left,
+                                              style: AppStyle.txtSFUIDisplayRegular14.copyWith(height: 1.00),
+                                            ),
                                             Padding(
-                                                padding: getPadding(left: 8),
-                                                child: Text("lbl_sign_in2".tr,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtSFUIDisplayMedium14
-                                                        .copyWith(
-                                                            height: 1.00)))
-                                          ]))),
+                                              padding: getPadding(left: 8),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Get.find<SignUpController>().redirectToSignIn();
+                                                },
+                                                child: Text(
+                                                  "lbl_sign_in2".tr,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.left,
+                                                  style: AppStyle.txtSFUIDisplayMedium14.copyWith(height: 1.00),
+                                                ),
+                                              ),
+                                            ),
+                                          ]
+                                      ))),
                               Align(
                                   alignment: Alignment.center,
                                   child: Padding(

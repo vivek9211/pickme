@@ -37,6 +37,10 @@ class EditProfileController extends GetxController {
       FirebaseService firebaseService = FirebaseService();
       // Call the updateUserProfile method on the instance
       await firebaseService.updateUserProfile(username, aadharNumber, location, phoneNumber);
+      languageController.clear();
+      languageOneController.clear();
+      group249Controller.clear();
+      phoneNumberController.clear();
       Get.snackbar(
         'Success',
         'Profile Updated',

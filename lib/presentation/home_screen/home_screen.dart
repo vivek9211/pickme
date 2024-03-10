@@ -512,7 +512,7 @@ class HomeScreen extends GetWidget<HomeController> {
                                     padding: getPadding(
                                       left: 31,
                                       top: 8,
-                                      right: 21,
+                                      right: 19,
                                       bottom: 10,
                                     ),
                                     child: Column(

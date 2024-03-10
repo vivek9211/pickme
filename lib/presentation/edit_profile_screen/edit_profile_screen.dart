@@ -27,14 +27,11 @@ class EditProfileScreen extends GetWidget<EditProfileController> {
                 title: AppbarTitle(text: "lbl_edit_profile".tr),
               actions: [
                 GestureDetector(
-                  onTap: () {
-                    controller.updateUserProfile();
-                  },
                   child: AppbarSubtitle1(
                     text: "lbl_done".tr,
                     margin: getMargin(left: 20, top: 18, right: 20, bottom: 18),
                   ),
-                ),
+                )
               ],
             ),
             body: Container(

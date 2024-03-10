@@ -6,9 +6,6 @@ Star⭐ the repo if you like to see more stuff on flutter 😉.
 ## Some Screenshots For You 💖
 <br>
 
-<img src="screenshot/1.png">
-<img src="screenshot/2.png">
-
 <div>
   <h1 align="center">Getting Started with Flutter 🚀 </h1>
   <strong>

@@ -201,7 +201,7 @@ final Map<String, String> enUs = {
   "msg_i_m_very_glab_y": "I’m very glab you like it👍",
   "msg_we_have_send_pa":
       "We have send password recovery instruction to your email",
-  "lbl_version": "Version",
+  "lbl_logout": "Logout",
   "lbl_profile": "Profile",
   "lbl_read_more": "Read More",
   "lbl_459": "\$459/",

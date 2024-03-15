@@ -3,9 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:travelappflutter/presentation/sign_in_screen/controller/sign_in_controller.dart';
 import 'core/app_export.dart';
 
-void main () async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid) {
     await Firebase.initializeApp(
@@ -19,6 +21,13 @@ void main () async {
   } else {
     await Firebase.initializeApp();
   }
+
+  // Initialize SignInController to use its methods
+  SignInController signInController = Get.put(SignInController());
+
+  // Call autoSignIn method to check if the user can be automatically signed in
+  await signInController.autoSignIn();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((value) {
@@ -37,7 +46,7 @@ class MyApp extends StatelessWidget {
       fallbackLocale: Locale('en', 'US'),
       title: 'PickMe',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.initialRoute,
+      initialRoute: Get.find<SignInController>().signInModelObj.value.isLoggedIn.value ? AppRoutes.homeScreen : AppRoutes.initialRoute,
       getPages: AppRoutes.pages,
     );
   }

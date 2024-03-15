@@ -6,6 +6,7 @@ import 'package:travelappflutter/widgets/app_bar/appbar_title.dart';
 import 'package:travelappflutter/widgets/app_bar/custom_app_bar.dart';
 import 'package:travelappflutter/widgets/custom_radio_button.dart';
 import 'package:travelappflutter/users/user_info.dart';
+import 'package:travelappflutter/presentation/sign_in_screen/controller/sign_in_controller.dart';
 
 class ProfileScreen extends GetWidget<ProfileController> {
   @override
@@ -496,72 +497,61 @@ class ProfileScreen extends GetWidget<ProfileController> {
                                               decoration: BoxDecoration(
                                                   color:
                                                       ColorConstant.gray100)),
-                                          Align(
-                                              alignment: Alignment.center,
-                                              child: Padding(
-                                                  padding: getPadding(
-                                                      left: 16,
-                                                      top: 22,
-                                                      right: 16),
-                                                  child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              CommonImageView(
-                                                                  svgPath:
-                                                                      ImageConstant
-                                                                          .imgUser2,
-                                                                  height:
-                                                                      getSize(
-                                                                          24.00),
-                                                                  width: getSize(
-                                                                      24.00)),
-                                                              Padding(
-                                                                  padding:
-                                                                      getPadding(
-                                                                          left:
-                                                                              14,
-                                                                          top:
-                                                                              2,
-                                                                          bottom:
-                                                                              2),
-                                                                  child: Text(
-                                                                      "lbl_version"
-                                                                          .tr,
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .left,
-                                                                      style: AppStyle.txtSFUIDisplayMedium16.copyWith(
-                                                                          letterSpacing:
-                                                                              0.50,
-                                                                          height:
-                                                                              1.00)))
-                                                            ]),
-                                                        CommonImageView(
-                                                            svgPath: ImageConstant
-                                                                .imgArrowright,
-                                                            height:
-                                                                getSize(24.00),
-                                                            width:
-                                                                getSize(24.00))
-                                                      ]))),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Padding(
+                                        padding: getPadding(
+                                          left: 16,
+                                          top: 22,
+                                          right: 16,
+                                        ),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            // Call the signOut() method when the user taps on the widget
+                                            Get.find<SignInController>().signOut();
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  CommonImageView(
+                                                    svgPath: ImageConstant.imgUser2,
+                                                    height: getSize(24.00),
+                                                    width: getSize(24.00),
+                                                  ),
+                                                  Padding(
+                                                    padding: getPadding(
+                                                      left: 14,
+                                                      top: 2,
+                                                      bottom: 2,
+                                                    ),
+                                                    child: Text(
+                                                      "lbl_logout".tr,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.left,
+                                                      style: AppStyle.txtSFUIDisplayMedium16.copyWith(
+                                                        letterSpacing: 0.50,
+                                                        height: 1.00,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              CommonImageView(
+                                                svgPath: ImageConstant.imgArrowright,
+                                                height: getSize(24.00),
+                                                width: getSize(24.00),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                           Container(
                                               height: getVerticalSize(1.00),
                                               width: getHorizontalSize(335.00),

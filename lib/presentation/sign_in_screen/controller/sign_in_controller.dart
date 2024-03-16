@@ -41,10 +41,21 @@ class SignInController extends GetxController {
       await storeCredentials(emailController.text, passwordController.text);
       signInModelObj.value.isLoggedIn.value = true; // Update authentication status
       Get.toNamed(AppRoutes.homeScreen);
+    } on FirebaseAuthException catch (e) {
+      print('Sign-in error: $e');
+      String errorMessage = 'An error occurred during sign-in';
+      if (e.code == 'user-not-found') {
+        errorMessage = 'Email is not registered';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Incorrect password';
+      }
+      Get.snackbar('Warning', errorMessage);
     } catch (e) {
       print('Sign-in error: $e');
+      Get.snackbar('Warning', 'An unexpected error occurred during sign-in');
     }
   }
+
 
   Future<void> signOut() async {
     try {

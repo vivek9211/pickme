@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '/core/app_export.dart';
 import 'package:travelappflutter/presentation/sign_up_screen/models/sign_up_model.dart';
 
@@ -30,28 +29,37 @@ class SignUpController extends GetxController {
 
   Future<void> signUpWithEmailAndPassword() async {
     try {
-      bool isEmailExists = await isEmailAlreadyRegistered(emailController.text.trim());
-      if (isEmailExists) {
-        Get.snackbar('Warning', 'Email already registered');
-        return;
-      }
-
+      // Create user with email and password
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
 
-      // Add user data to Firestore
-      await _firestore.collection('users').doc(userCredential.user!.uid).set({
-        'username': groupFiftyOneController.text.trim(),
-        'email': emailController.text.trim(),
-      });
-
-      sendEmailVerification();
-
+      // Send email verification
+      await sendEmailVerification();
       Get.toNamed(AppRoutes.verificationScreen);
+
+      // Add user data to Firestore only after verification is complete
+      _timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
+        await FirebaseAuth.instance.currentUser?.reload();
+        final user = FirebaseAuth.instance.currentUser;
+        if (user!.emailVerified) {
+          timer.cancel();
+          // Add user data to Firestore
+          await _firestore.collection('users').doc(user.uid).set({
+            'username': groupFiftyOneController.text.trim(),
+            'email': emailController.text.trim(),
+          });
+          // Navigate to verification screen
+
+        }
+      });
     } catch (e) {
-      print('Sign-up error: $e');
+      if (e is FirebaseAuthException && e.code == 'email-already-in-use') {
+        Get.snackbar('Warning', 'Email already registered');
+      } else {
+        print('Sign-up error: $e');
+      }
     }
   }
 
@@ -86,7 +94,7 @@ class SignUpController extends GetxController {
       final user = FirebaseAuth.instance.currentUser;
       if (user!.emailVerified) {
         timer.cancel();
-        Get.offAllNamed(AppRoutes.appNavigationScreen);
+        Get.offAllNamed(AppRoutes.homeScreen);
       }
     });
   }
